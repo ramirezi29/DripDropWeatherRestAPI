@@ -43,5 +43,10 @@
 	</array>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>We use your current location to serve you weather right where you are 🤫</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 </dict>
 </plist>

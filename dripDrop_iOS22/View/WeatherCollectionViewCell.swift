@@ -20,7 +20,10 @@ class WeatherCollectionViewCell: UICollectionViewCell {
     // MARK: - Landing Pad
     var dailyWeather: DailyWeather? {
         didSet {
-          updateViews()
+            DispatchQueue.main.async {
+               
+                self.updateViews()
+            }
         }
     }
     // NOTE: - String for our time
@@ -40,15 +43,15 @@ class WeatherCollectionViewCell: UICollectionViewCell {
         
         // NOTE: - grab all our labels and stuff
         collectionSummaryLabel.text = dailyWeather.summary
+        
         // NOTE: - Start to conn
         dayOfTheWeekLabel.text = stringFromTime(time: dailyWeather.time)
-        iconImageLabel.image = UIImage(named: "cloudy")
+        iconImageLabel.image = UIImage(named: dailyWeather.icon) ?? UIImage(named: "cloudy")
         
-        // NOTE: - UI Effect
-        iconImageLabel.layer.shadowOffset = CGSize(width: 1, height: 1)
-        iconImageLabel.layer.shadowRadius = 2.0
-        iconImageLabel.layer.shadowOpacity = 0.8
+     
         
         tempLabel.text = "\(Int(dailyWeather.temperatureMax + dailyWeather.temperatureMin)/2)°"
+        
+        updateLabelUI()
     }
 }

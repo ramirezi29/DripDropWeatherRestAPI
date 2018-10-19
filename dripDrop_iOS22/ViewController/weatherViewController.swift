@@ -20,7 +20,8 @@ class weatherViewController: UIViewController, CLLocationManagerDelegate, UIColl
     
     var currentLocation: CLLocation? {
         didSet{
-           fetchWeather()
+            loadViewIfNeeded()
+            fetchWeather()
         }
     }
     
@@ -30,7 +31,10 @@ class weatherViewController: UIViewController, CLLocationManagerDelegate, UIColl
         // MARK: - This is your job
         weatherCollectionView.dataSource = self
         weatherCollectionView.delegate = self
+        updateUI()
+        //
         
+        //
         // MARK: - Ask for permission to track location
         WeatherController.shared.locationManger.requestWhenInUseAuthorization()
         
@@ -70,7 +74,7 @@ class weatherViewController: UIViewController, CLLocationManagerDelegate, UIColl
         }
     }//🧀
     
-
+    
     // MARK: - CollectionView DataSource  (Delegate required functions)
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return WeatherController.shared.arrayOfDailyWeathers?.count ?? 0
@@ -84,6 +88,10 @@ class weatherViewController: UIViewController, CLLocationManagerDelegate, UIColl
         cell?.dailyWeather = dailyWeather
         
         return cell ?? UICollectionViewCell()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        collectionView.backgroundColor = UIColor.clear.withAlphaComponent(0)
     }
     
     // MARK: - Location updated evertime this func is called, double check on this meaning

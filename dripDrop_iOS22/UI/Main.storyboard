@@ -99,15 +99,13 @@
                                             <outlet property="collectionSummaryLabel" destination="aQR-cN-dDa" id="YRd-xX-1OK"/>
                                             <outlet property="dayOfTheWeekLabel" destination="4qe-iJ-obh" id="CDb-QS-lng"/>
                                             <outlet property="iconImageLabel" destination="syM-bB-iMu" id="I5w-c3-qNv"/>
-                                            <outlet property="iconImageView" destination="syM-bB-iMu" id="g0I-ZH-P8k"/>
-                                            <outlet property="summaryLabel" destination="aQR-cN-dDa" id="Uqk-fz-o7y"/>
                                             <outlet property="tempLabel" destination="9Xu-HZ-WcL" id="355-YN-FrI"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" red="0.87064484279999999" green="0.97753171809999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.059867565320000003" green="0.59801256349999998" blue="0.78063875439999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="1we-wu-vNE" firstAttribute="top" secondItem="C6l-eS-3Yf" secondAttribute="top" constant="8" id="4Bg-vF-813"/>
                             <constraint firstItem="Ji7-Ny-6uf" firstAttribute="width" secondItem="NsK-H0-0a5" secondAttribute="width" id="6E3-1x-ykJ"/>

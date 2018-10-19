@@ -32,7 +32,9 @@ class WeatherController {
         // NOTE: - Step 1) Get the right URL
         guard let unwrappedURL = baseURL else { completion([]);  return }
         var url = unwrappedURL.appendingPathComponent(apiKeyString)
-        url.appendingPathComponent("\(latitude),\(longitude)")
+        
+        // NOTE: -
+        url.appendPathComponent("\(latitude),\(longitude)")
         
         var components = URLComponents(url: url, resolvingAgainstBaseURL: true)
         
@@ -40,6 +42,9 @@ class WeatherController {
         components?.queryItems = [URLQueryItem(name: "exclude", value: "[currently,hourly,flags]")]
         
         guard let finishedURL = components?.url else { completion([]); return}
+        
+     //   print("\(components.str)")
+        
         
         // NOTE: - check out URL just in case
         print(finishedURL.absoluteString)
