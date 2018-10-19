@@ -7,30 +7,87 @@
 //
 
 import UIKit
+import CoreLocation
 
-class weatherViewController: UIViewController {
-
+class weatherViewController: UIViewController, CLLocationManagerDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
+    
+    // MARK: - IBOUTlets
+    
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var summaryLabel: UILabel!
     @IBOutlet weak var tempLabel: UILabel!
     @IBOutlet weak var weatherCollectionView: UICollectionView!
     
+    var currentLocation: CLLocation? {
+        didSet{
+           fetchWeather()
+        }
+    }
     
+    // MARK: - Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        // MARK: - This is your job
+        weatherCollectionView.dataSource = self
+        weatherCollectionView.delegate = self
+        
+        // MARK: - Ask for permission to track location
+        WeatherController.shared.locationManger.requestWhenInUseAuthorization()
+        
+        // MARK: - Work to be done by delegate
+        if CLLocationManager.locationServicesEnabled() {
+            
+            // MARK: set as the delegate and self
+            WeatherController.shared.locationManger.delegate = self
+            
+            // MARK: - Once this is allowed, it will go into your phone and know where you're at
+            // THere are other options for accuracy
+            WeatherController.shared.locationManger.desiredAccuracy = kCLLocationAccuracyThreeKilometers
+            
+            WeatherController.shared.locationManger.startUpdatingLocation()
+        }
+    }//🍕
+    
+    func updateCurrentWeather() {
+        cityLabel.text = "Salt Lake City"
+        summaryLabel.text = WeatherController.shared.currentWeather?.summary
+        
+        //NOTE: - Notice the syntax and the degree symbol. Taken from Emoji tray
+        tempLabel.text = "\(Int(WeatherController.shared.currentWeather?.temperature ?? 0))°"
     }
     
+    // MARK: -
+    func fetchWeather() {
+        guard let latitude = currentLocation?.coordinate.latitude,
+            let longitude = currentLocation?.coordinate.longitude else {return}
+        
+        // MARK: - Now fetch
+        WeatherController.shared.fetchWeeklyWeather(latitude: latitude, longitude: longitude) { (_) in
+            DispatchQueue.main.async {
+                self.weatherCollectionView.reloadData()
+                self.updateCurrentWeather()
+            }
+        }
+    }//🧀
+    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    // MARK: - CollectionView DataSource  (Delegate required functions)
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return WeatherController.shared.arrayOfDailyWeathers?.count ?? 0
     }
-    */
-
-}
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WeatherCell", for: indexPath) as? WeatherCollectionViewCell
+        
+        let dailyWeather = WeatherController.shared.arrayOfDailyWeathers?[indexPath.row]
+        
+        cell?.dailyWeather = dailyWeather
+        
+        return cell ?? UICollectionViewCell()
+    }
+    
+    // MARK: - Location updated evertime this func is called, double check on this meaning
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        currentLocation = locations.first
+    }
+}//🔥

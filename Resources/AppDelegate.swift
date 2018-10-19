@@ -5,9 +5,7 @@
 //  Created by Ivan Ramirez on 10/18/18.
 //  Copyright © 2018 ramcomw. All rights reserved.
 //
-////4e255b621b8dc5821c76ed35f2f6afc2
-// https://api.darksky.net/forecast/[key]/[latitude],[longitude]
-//https://api.darksky.net/forecast/4e255b621b8dc5821c76ed35f2f6afc2/42.3601,-71.0589
+
 
 import UIKit
 

@@ -12,7 +12,7 @@
         <!--Weather-->
         <scene sceneID="bpA-hr-dKg">
             <objects>
-                <viewController id="kZN-EL-aer" customClass="weatherViewController" customModule="dripDrop_iOS22" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="kZN-EL-aer" customClass="weatherViewController" customModule="dripDrop_iOS22" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NsK-H0-0a5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -50,7 +50,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="weatherCell" id="MSc-sh-EW9" customClass="WeatherCollectionViewCell" customModule="dripDrop_iOS22" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="WeatherCell" id="MSc-sh-EW9" customClass="WeatherCollectionViewCell" customModule="dripDrop_iOS22" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="-2.5" width="200" height="205"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -96,6 +96,7 @@
                                             <constraint firstItem="syM-bB-iMu" firstAttribute="centerY" secondItem="MSc-sh-EW9" secondAttribute="centerY" id="s9K-B2-bLh"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="collectionSummaryLabel" destination="aQR-cN-dDa" id="YRd-xX-1OK"/>
                                             <outlet property="dayOfTheWeekLabel" destination="4qe-iJ-obh" id="CDb-QS-lng"/>
                                             <outlet property="iconImageLabel" destination="syM-bB-iMu" id="I5w-c3-qNv"/>
                                             <outlet property="iconImageView" destination="syM-bB-iMu" id="g0I-ZH-P8k"/>
