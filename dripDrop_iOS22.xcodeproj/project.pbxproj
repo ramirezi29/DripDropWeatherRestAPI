@@ -67,7 +67,6 @@
 			children = (
 				479FB54021795FE500485CB5 /* UI */,
 				479FB53F21795FA100485CB5 /* ViewController */,
-				479FB53E21795F9E00485CB5 /* View */,
 				479FB53D21795F9600485CB5 /* ModelController */,
 				479FB53C21795F9200485CB5 /* Model */,
 			);
@@ -109,6 +108,7 @@
 		479FB54021795FE500485CB5 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				479FB53E21795F9E00485CB5 /* View */,
 				479FB53A21795EF400485CB5 /* Main.storyboard */,
 				479FB54121795FFD00485CB5 /* Extension */,
 			);

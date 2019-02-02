@@ -11,7 +11,6 @@ import UIKit
 class WeatherCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Cell Outlets
-    
     @IBOutlet weak var collectionSummaryLabel: UILabel!
     @IBOutlet weak var tempLabel: UILabel!
     @IBOutlet weak var iconImageLabel: UIImageView!
@@ -21,13 +20,13 @@ class WeatherCollectionViewCell: UICollectionViewCell {
     var dailyWeather: DailyWeather? {
         didSet {
             DispatchQueue.main.async {
-               
+                
                 self.updateViews()
             }
         }
     }
-    // NOTE: - String for our time
     
+    // NOTE: - String for our time
     func stringFromTime(time: TimeInterval) -> String {
         let formatter = DateFormatter()
         // NOTE: - "EEE" filler text, not sure what that means
@@ -47,8 +46,6 @@ class WeatherCollectionViewCell: UICollectionViewCell {
         // NOTE: - Start to conn
         dayOfTheWeekLabel.text = stringFromTime(time: dailyWeather.time)
         iconImageLabel.image = UIImage(named: dailyWeather.icon) ?? UIImage(named: "cloudy")
-        
-     
         
         tempLabel.text = "\(Int(dailyWeather.temperatureMax + dailyWeather.temperatureMin)/2)°"
         
